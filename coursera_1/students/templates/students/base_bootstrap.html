@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="dj4e" content="c95de732620770a1a1281c30875ded3">
+    <title>{% block title %}Student CRUD - Abhijeet Kumar{% endblock %}</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+        .card {
+            border: none;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            border-radius: 12px;
+        }
+        .card-header {
+            border-radius: 12px 12px 0 0 !important;
+        }
+        .btn {
+            border-radius: 8px;
+        }
+        .table th {
+            background-color: #f1f3f5;
+            font-weight: 600;
+        }
+        .badge {
+            font-size: 0.85em;
+        }
+        .page-header {
+            border-bottom: 2px solid #dee2e6;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        footer {
+            background-color: #343a40;
+            color: #adb5bd;
+            padding: 1rem 0;
+            margin-top: 3rem;
+        }
+    </style>
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'students:student_list' %}">
+            <i class="bi bi-mortarboard-fill me-2"></i>Student Manager
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'students:student_list' %}">
+                        <i class="bi bi-list-ul me-1"></i>All Students
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'students:student_create' %}">
+                        <i class="bi bi-person-plus me-1"></i>Add Student
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/">
+                        <i class="bi bi-shield-lock me-1"></i>Admin
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Main content -->
+<main class="container my-4">
+
+    <!-- Flash messages -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                <i class="bi bi-info-circle me-2"></i>{{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% block content %}{% endblock %}
+</main>
+
+<!-- Footer -->
+<footer class="text-center">
+    <div class="container">
+        <p class="mb-0">
+            &copy; 2026 &mdash; Student CRUD App &mdash;
+            <strong>Abhijeet Kumar</strong> &mdash;
+            Django Features &amp; Libraries Assignment
+        </p>
+    </div>
+</footer>
+
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>
